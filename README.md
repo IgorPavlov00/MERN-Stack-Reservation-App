@@ -21,7 +21,7 @@ A full-stack web application cloning core Booking.com functionality using the ME
 
 **Frontend**
 
-React <img src="https://img.icons8.com/color/30/000000/react-native.png" width="20" height="20" alt="React Icon"/> &nbsp; Redux <img src="https://img.icons8.com/color/30/000000/redux.png" width="20" height="20" alt="Redux Icon"/> &nbsp; HTML5 <img src="https://img.icons8.com/color/30/000000/html-5--v1.png" width="20" height="20" alt="HTML5 Icon"/> &nbsp; CSS3 <img src="https://img.icons8.com/color/30/000000/css3.png" width="20" height="20" alt="CSS3 Icon"/>
+React <img src="https://img.icons8.com/color/30/000000/react-native.png" width="20" height="20" alt="React Icon"/> &nbsp;  &nbsp; HTML5 <img src="https://img.icons8.com/color/30/000000/html-5--v1.png" width="20" height="20" alt="HTML5 Icon"/> &nbsp; CSS3 <img src="https://img.icons8.com/color/30/000000/css3.png" width="20" height="20" alt="CSS3 Icon"/>
 
 **Backend**
 
@@ -40,4 +40,3 @@ MongoDB <img src="https://img.icons8.com/color/30/000000/mongodb.png" width="20"
     cd booking-com-clone
     ```
 
-*(The rest of your installation instructions go here)*
