@@ -4,7 +4,8 @@
 
 A full-stack web application cloning core Booking.com functionality using the MERN stack. Users can search, browse, and manage bookings. Built with modern technologies for a robust and scalable platform.
 
-![Booking.com Clone Preview](booking-clone-preview.png) *(Replace with your image filename)*
+![image](https://github.com/user-attachments/assets/59a66eca-db3d-476c-9105-70aefa8b6675)
+
 
 ## Table of Contents
 
