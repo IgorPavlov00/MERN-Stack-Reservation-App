@@ -1,0 +1,319 @@
+.header {
+  background-color: #003580;
+  color: white;
+  padding: 30px 0;
+}
+
+.headerContainer {
+  width: 1200px;
+  max-width: 95%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.headerNav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+/* ... (rest of the CSS code) ... */
+
+.headerNavItem {
+  display: flex;
+  align-items: center;
+  margin-right: 30px;
+  cursor: pointer;
+  font-size: 16px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  border-block-style: solid;
+  border: yellowgreen;
+}
+
+.headerNavItem::before {
+  /* This is for the border around the whole item (icon and text) */
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: calc(100% + 10px);
+  height: calc(100% + 10px);
+  border-radius: 8px;
+  border: 2px solid transparent;
+  transition: border-color 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
+}
+
+.headerNavItem:hover::before {
+  border-color: white;
+  transform: scale(1.05) translate(-50%, -50%);
+}
+
+.headerNavItem svg {
+  margin-right: 10px;
+  width: 20px;
+  height: 20px;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+  border: 2px solid transparent; /* Initially transparent */
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.headerNavItem:hover svg {
+  transform: scale(1.45);
+  /* border-color: white; */
+}
+
+.headerNavItem span {
+  /* Target the text specifically */
+  transition: color 0.3s ease, border-color 0.3s ease; /* Add border-color transition */
+  border: 2px solid transparent; /* Initially transparent border */
+  border-radius: 8px; /* Same border-radius as buttons */
+  padding: 10px 20px; /* Same padding as buttons */
+}
+
+.headerNavItem:hover span {
+  border-color: white; /* White border on hover */
+}
+
+.headerNavItem.active {
+  font-weight: bold;
+}
+
+/* ... (rest of the CSS code) ... */
+
+.headerAuth {
+  display: flex;
+}
+
+.headerButton {
+  background-color: transparent;
+  color: white;
+  border: 2px solid white;
+  padding: 10px 20px;
+  margin-left: 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-size: 16px;
+}
+
+.headerButton:hover {
+  background-color: white;
+  color: #003580;
+}
+
+.headerButton.search {
+  background-color: yellow;
+  color: black;
+  border: 1px;
+  font-weight: bold;
+}
+
+.headerButton.search:hover {
+  background-color: #eee;
+  color: #003580;
+}
+
+.headerContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.headerTitle {
+  font-size: 2.5rem;
+  font-weight: 600;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.headerDesc {
+  margin-bottom: 30px;
+  text-align: center;
+  font-size: 18px;
+  line-height: 1.6;
+  max-width: 700px;
+}
+
+.headerSearch {
+  display: flex;
+  background-color: white;
+  color: #333;
+  padding: 15px;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Softer shadow */
+  border: yellowgreen;
+  border-style: solid;
+}
+
+.headerSearchItem {
+  display: flex;
+  align-items: center;
+  margin-right: 30px;
+  flex-grow: 1;
+  position: relative;
+}
+
+.headerSearchItem:last-child {
+  margin-right: 0;
+}
+
+.headerSearchInput {
+  border: none;
+  padding: 10px;
+  width: 100%;
+  font-size: 18px;
+  margin-left: 10px;
+}
+
+.headerSearchInput::placeholder {
+  color: #aaa; /* More visible placeholder color */
+  font-size: 18px;
+}
+
+.headerSearchText {
+  cursor: pointer;
+  white-space: nowrap;
+  padding: 10px;
+  border: 1px solid #ccc; /* More distinct border */
+  border-radius: 8px;
+  font-size: 18px;
+  transition: all 0.3s;
+  margin-left: 10px;
+}
+
+.headerSearchText:hover {
+  border-color: #999;
+}
+
+.headerButton.search {
+  background-color: #003580; /* Dark blue background */
+  color: white; /* White text color */
+  border: none;
+  font-weight: bold;
+  padding: 10px 20px; /* Adjust padding */
+  border-radius: 8px;
+  cursor: pointer; /* Ensure cursor is a pointer */
+  transition: all 0.3s;
+}
+
+.headerButton.search:hover {
+  background-color: #274d81; /* Darker blue on hover */
+  color: white;
+}
+.date,
+.options {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 2;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 15px;
+  min-width: 250px;
+}
+
+.optionItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.optionItem:last-child {
+  margin-bottom: 0;
+}
+
+.optionText {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.optionCounter {
+  display: flex;
+  align-items: center;
+}
+
+.optionCounterButton {
+  border: none;
+  background-color: #eee;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 18px;
+  border-radius: 5px;
+}
+
+.optionCounterNumber {
+  margin: 0 15px;
+  font-size: 18px;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .headerContainer {
+    width: 90%;
+  }
+
+  .headerNav {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 20px;
+  }
+
+  .headerNavItem {
+    margin: 8px 0;
+    margin-right: 0;
+    font-size: 16px;
+  }
+
+  .headerSearch {
+    flex-direction: column;
+    padding: 10px;
+    border: yellow;
+    border-block-style: solid;
+  }
+
+  .headerSearchItem {
+    margin: 15px 0;
+    flex-direction: column;
+    align-items: flex-start;
+    border: 1px;
+  }
+
+  .headerSearchInput,
+  .headerSearchText {
+    width: 100%;
+    font-size: 16px;
+    padding: 10px;
+    margin-left: 0;
+  }
+
+  .headerTitle {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+  }
+
+  .headerDesc {
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+
+  .headerButton {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+
+  .headerSearchInput::placeholder {
+    font-size: 16px;
+  }
+}

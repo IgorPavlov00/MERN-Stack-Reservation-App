@@ -1,0 +1,62 @@
+.navbar {
+  height: 50px;
+  background-color: #003580;
+  display: flex;
+  justify-content: center;
+}
+
+.navContainer {
+  width: 100%;
+  max-width: 1024px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-weight: 500;
+  font-size: 1.2rem; /* Slightly larger logo */
+}
+
+.navButton {
+  margin-left: 20px;
+  border: none;
+  padding: 8px 16px; /* Increased padding */
+  cursor: pointer;
+  color: white; /* Buttons are now white */
+  background-color: transparent; /* Transparent background */
+  border: 1px solid white; /* White border */
+  border-radius: 5px; /* Rounded corners */
+  font-weight: 500; /* Slightly bolder text */
+  transition: all 0.3s ease; /* Smooth transitions for hover effects */
+}
+
+.navButton:hover {
+  background-color: white; /* White background on hover */
+  color: #003580; /* Blue text on hover */
+  border-color: #003580; /* Blue border on hover */
+}
+
+.navButton.signup {
+  /* Style for the "Sign Up" button (if you have one) */
+  background-color: #f0c808; /* Example yellow color */
+  color: #003580;
+  border: none; /* Remove border */
+}
+.navButton.signup:hover {
+  background-color: #e6b400; /* Darker yellow on hover */
+  color: #003580;
+}
+
+/* Optional: Add some spacing between nav items */
+.navContainer > * {
+  /* Targets direct children of navContainer */
+  margin: 0 5px; /* Adds small margin to the left and right */
+}
+.navContainer > *:first-child {
+  margin-left: 0; /* Remove margin from the first element */
+}
+.navContainer > *:last-child {
+  margin-right: 0; /* Remove margin from the last element */
+}
