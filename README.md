@@ -6,19 +6,6 @@ A full-stack web application cloning core Booking.com functionality using the ME
 
 ![image](https://github.com/user-attachments/assets/59a66eca-db3d-476c-9105-70aefa8b6675)
 
-
-## Table of Contents
-
-- [Features](#features)
-- [Technologies](#technologies)
-- [Installation](#installation)
-- [Usage](#usage)
-- [API Endpoints](#api-endpoints)
-- [Project Structure](#project-structure)
-- [Screenshots](#screenshots)
-- [Contributing](#contributing)
-- [License](#license)
-
 ## Features
 
 - **User Authentication:** Secure user registration and login using JWT (JSON Web Tokens) and HTTP-only cookies.
