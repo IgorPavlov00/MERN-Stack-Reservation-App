@@ -2,7 +2,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-A full-stack web application cloning core Booking.com functionality using the MERN stack.  Users can search, browse, and manage bookings.  Built with modern technologies for a robust and scalable platform.
+A full-stack web application cloning core Booking.com functionality using the MERN stack. Users can search, browse, and manage bookings. Built with modern technologies for a robust and scalable platform.
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/59a66eca-db3d-476c-9105-70aefa8b6675" alt="Booking.com Clone Screenshot" width="700">
@@ -10,12 +10,12 @@ A full-stack web application cloning core Booking.com functionality using the ME
 
 ## ✨ Key Features
 
-*   **Secure Authentication:** JWT (JSON Web Tokens) and HTTP-only cookies for registration and login.
-*   **Flexible Search:** Search accommodations by destination, dates, and number of guests.
-*   **Detailed Listings:** Comprehensive property information with images, descriptions, amenities, and reviews.
-*   **Booking Management:** Create, update, and delete bookings. View and manage all bookings in one place.
-*   **Admin Panel (Optional):**  Manage properties, users, and bookings through an administrative interface.
-*   **Responsive Design:**  Seamless experience across devices.
+*   **🔒 Secure Authentication:** JWT (JSON Web Tokens) and HTTP-only cookies for registration and login.
+*   **🔍 Flexible Search:** Search accommodations by destination, dates, and number of guests.
+*   **🏠 Detailed Listings:** Comprehensive property information with images, descriptions, amenities, and reviews.
+*   **📝 Booking Management:** Create, update, and delete bookings. View and manage all bookings in one place.
+*   **⚙️ Admin Panel (Optional):** Manage properties, users, and bookings through an administrative interface.
+*   **📱 Responsive Design:** Seamless experience across devices.
 
 ## 💻 Tech Stack
 
