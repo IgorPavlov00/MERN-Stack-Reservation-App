@@ -1,0 +1,61 @@
+.mail {
+  width: 100%;
+  margin-top: 50px;
+  background-color: #003580;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 50px;
+  font-family: "Khand";
+}
+
+.mailInputContainer {
+  /* Add a container for the input and button */
+  display: flex; /* Use flexbox for layout */
+  width: 100%; /* Make sure the container takes full width */
+  max-width: 400px; /* Set a max-width for larger screens if needed */
+}
+
+.mailInputContainer > input {
+  flex-grow: 1; /* Allow input to expand to fill available space */
+  height: 40px; /* Increased height for better usability */
+  padding: 10px;
+  border: none;
+  margin-right: 10px;
+  border-radius: 5px;
+  box-sizing: border-box; /* Include padding in width calculation */
+  font-size: 1rem; /* Added font-size for better readability */
+  min-width: 0; /* Key: Allow input to shrink below 300px */
+}
+
+.mailInputContainer > button {
+  height: 40px; /* Match input height */
+  background-color: #0071c2;
+  color: white;
+  font-weight: 500;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 0 20px; /* Add padding to the button */
+  font-size: 1rem; /* Added font-size for better readability */
+  white-space: nowrap; /* Prevent button text from wrapping */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .mailInputContainer {
+    flex-direction: column; /* Stack input and button vertically */
+    max-width: 300px; /* Adjust max-width if needed */
+  }
+
+  .mailInputContainer > input {
+    margin-right: 0;
+    margin-bottom: 10px; /* Add spacing between input and button */
+  }
+
+  .mailInputContainer > button {
+    width: 100%; /* Button takes full width */
+  }
+}

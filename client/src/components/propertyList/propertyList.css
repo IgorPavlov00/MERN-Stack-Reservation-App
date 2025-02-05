@@ -1,0 +1,71 @@
+.pList {
+  width: 100%;
+  max-width: 1024px;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
+  font-family: "Khand";
+}
+
+.pListItem {
+  flex: 1;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  position: relative; /* For positioning overlay */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
+  height: 150px;
+}
+
+.pListItem:hover {
+  transform: scale(1.05); /* Scale up on hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
+}
+
+.pListImg {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  transition: opacity 0.3s ease, filter 0.3s ease; /* Smooth transitions */
+}
+
+.pListTitles {
+  position: absolute; /* Position titles over image */
+  bottom: 20px;
+  left: 20px;
+  color: white; /* White text for contrast */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Add a text shadow */
+  transition: transform 0.3s ease; /* Smooth transitions */
+}
+
+.pListItem:hover .pListTitles {
+  transform: translateY(-10px); /* Move titles up slightly on hover */
+}
+
+.pListTitles > h1 {
+  font-size: 1.2rem; /* Slightly larger font size */
+  margin-bottom: 5px; /* Add some spacing */
+}
+
+.pListTitles > h2 {
+  font-size: 0.9rem; /* Slightly larger font size */
+  font-weight: 400; /* Slightly bolder font weight */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .pList {
+    flex-direction: column; /* Stack items vertically on smaller screens */
+    gap: 10px;
+  }
+
+  .pListImg {
+    height: 200px; /* Adjust image height */
+  }
+
+  .pListTitles {
+    bottom: 10px; /* Adjust title position */
+    left: 10px;
+  }
+}

@@ -3,6 +3,7 @@
   background-color: #003580;
   display: flex;
   justify-content: center;
+  font-family: "Khand";
 }
 
 .navContainer {
@@ -30,6 +31,7 @@
   border-radius: 5px; /* Rounded corners */
   font-weight: 500; /* Slightly bolder text */
   transition: all 0.3s ease; /* Smooth transitions for hover effects */
+  margin-top: 10px;
 }
 
 .navButton:hover {
@@ -59,4 +61,41 @@
 }
 .navContainer > *:last-child {
   margin-right: 0; /* Remove margin from the last element */
+}
+@media (max-width: 768px) {
+  /* Adjust breakpoint as needed */
+  .navContainer {
+    flex-direction: column; /* Stack navbar items vertically */
+    align-items: center; /* Center items horizontally */
+    padding: 10px; /* Reduce padding */
+  }
+
+  .logo {
+    margin-bottom: 10px; /* Add space below logo */
+  }
+
+  .navButton {
+    margin: 5px 0; /* Adjust button margins */
+    width: 100%; /* Make buttons full width */
+  }
+
+  .homeContainer {
+    flex-direction: column; /* Stack content vertically */
+    align-items: center; /* Center content horizontally */
+    padding: 10px; /* Reduce padding */
+  }
+
+  .homeContainer > * {
+    /* Style the children of homeContainer */
+    width: 100%; /* Make children full width */
+    margin-bottom: 10px; /* Add space between children */
+  }
+}
+
+/* Optional: Adjustments for even smaller screens */
+@media (max-width: 400px) {
+  /* Adjust breakpoint as needed */
+  .logo {
+    font-size: 1rem; /* Slightly smaller logo on very small screens */
+  }
 }
