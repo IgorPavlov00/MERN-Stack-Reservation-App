@@ -41,6 +41,10 @@ const HotelSchema = new mongoose.Schema({
   rooms: {
     type: [String],
   },
+  reviewCount: {
+    type: Number,
+    default: 0,
+  },
   cheapestPrice: {
     type: Number,
     required: true,

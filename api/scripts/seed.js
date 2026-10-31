@@ -1,10 +1,12 @@
 // Seeds sample hotels + rooms so the site has data to show.
 //   npm run seed            -> seeds only if there are no hotels yet
-//   npm run seed -- --reset -> wipes ALL hotels and rooms, then seeds
+//   npm run seed -- --reset -> wipes ALL hotels, rooms, bookings and reviews, then seeds
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import Hotel from "../models/Hotel.js";
 import Room from "../models/Room.js";
+import Booking from "../models/Booking.js";
+import Review from "../models/Review.js";
 
 dotenv.config({ quiet: true });
 
@@ -45,7 +47,7 @@ const reset = process.argv.includes("--reset");
 if (!reset && (await Hotel.countDocuments()) > 0) {
   console.log("Hotels already exist - skipping. Use `npm run seed -- --reset` to replace them.");
 } else {
-  if (reset) await Promise.all([Hotel.deleteMany({}), Room.deleteMany({})]);
+  if (reset) await Promise.all([Hotel, Room, Booking, Review].map((M) => M.deleteMany({})));
   for (const h of hotels) {
     const rooms = await Room.insertMany(
       roomTemplates.map(({ priceOffset, numbers, ...r }) => ({

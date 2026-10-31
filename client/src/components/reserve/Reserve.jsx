@@ -1,26 +1,26 @@
 import { useEffect, useMemo, useState } from "react";
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark, faUserGroup, faCircleCheck } from "@fortawesome/free-solid-svg-icons";
 import { format } from "date-fns";
 import useFetch from "../../hooks/useFetch";
 import { useSearch } from "../../context/SearchContext";
+import { useAuth } from "../../context/AuthContext";
 import { api } from "../../api";
-import { nightsInRange } from "../../utils";
+import { apiDay, checkoutFor, dayStr, nightsInRange } from "../../utils";
 import "./reserve.css";
 
 const Reserve = ({ hotelId, onClose }) => {
   const { dates } = useSearch();
+  const { user } = useAuth();
   const { data: rooms, loading, error, reFetch } = useFetch(`/hotels/room/${hotelId}`);
   const [selected, setSelected] = useState([]); // [{ id, price }]
   const [status, setStatus] = useState({ state: "idle", message: "" });
+  const [booking, setBooking] = useState(null);
 
   const nights = useMemo(() => nightsInRange(dates[0].startDate, dates[0].endDate), [dates]);
-  const nightTimes = useMemo(() => new Set(nights.map((d) => d.getTime())), [nights]);
-  const checkout = useMemo(() => {
-    const d = new Date(nights[nights.length - 1]);
-    d.setDate(d.getDate() + 1);
-    return d;
-  }, [nights]);
+  const nightKeys = useMemo(() => new Set(nights.map(dayStr)), [nights]);
+  const checkout = useMemo(() => checkoutFor(dates[0].startDate, dates[0].endDate), [dates]);
 
   useEffect(() => {
     const onKey = (e) => e.key === "Escape" && onClose();
@@ -32,8 +32,7 @@ const Reserve = ({ hotelId, onClose }) => {
     };
   }, [onClose]);
 
-  const isAvailable = (roomNumber) =>
-    !roomNumber.unavailableDates.some((d) => nightTimes.has(new Date(d).getTime()));
+  const isAvailable = (roomNumber) => !roomNumber.unavailableDates.some((d) => nightKeys.has(apiDay(d)));
 
   const isSelected = (id) => selected.some((s) => s.id === id);
   const toggle = (id, price) =>
@@ -43,29 +42,21 @@ const Reserve = ({ hotelId, onClose }) => {
 
   const handleReserve = async () => {
     setStatus({ state: "saving", message: "" });
-    const results = await Promise.allSettled(
-      selected.map(({ id }) =>
-        api(`/rooms/availability/${id}`, {
-          method: "PUT",
-          body: { dates: nights.map((d) => d.toISOString()) },
-        })
-      )
-    );
-    const failed = results.filter((r) => r.status === "rejected");
-    reFetch();
-    if (failed.length === 0) {
-      setStatus({
-        state: "done",
-        message: `${selected.length} room${selected.length > 1 ? "s" : ""} booked · $${total} total`,
+    try {
+      const created = await api("/bookings", {
+        method: "POST",
+        body: {
+          hotelId,
+          roomNumberIds: selected.map((s) => s.id),
+          checkIn: dayStr(nights[0]),
+          checkOut: dayStr(checkout),
+        },
       });
-    } else {
-      setStatus({
-        state: "error",
-        message:
-          failed.length === results.length
-            ? failed[0].reason.message
-            : `${results.length - failed.length} room(s) booked, ${failed.length} failed: ${failed[0].reason.message}`,
-      });
+      setBooking(created);
+      setStatus({ state: "done", message: "" });
+    } catch (err) {
+      setStatus({ state: "error", message: err.message });
+      reFetch();
     }
     setSelected([]);
   };
@@ -76,7 +67,7 @@ const Reserve = ({ hotelId, onClose }) => {
         <div className="rHeader">
           <div>
             <h2 className="rHeading" id="reserve-title">
-              Select your rooms
+              {status.state === "done" ? "Booking complete" : "Select your rooms"}
             </h2>
             <p className="rDates">
               {format(nights[0], "EEE d MMM")} → {format(checkout, "EEE d MMM yyyy")} · {nights.length}{" "}
@@ -92,10 +83,20 @@ const Reserve = ({ hotelId, onClose }) => {
           <div className="rSuccess">
             <FontAwesomeIcon icon={faCircleCheck} className="rSuccessIcon" />
             <h3>Your reservation is confirmed!</h3>
-            <p className="muted">{status.message}</p>
-            <button className="btn btn-primary btn-lg" onClick={onClose}>
-              Done
-            </button>
+            <p className="muted">
+              {booking.rooms.length} room{booking.rooms.length > 1 ? "s" : ""} · ${booking.total} total
+            </p>
+            <p className="muted rSmall">
+              A confirmation email is on its way to <b>{user?.email}</b>.
+            </p>
+            <div className="rSuccessActions">
+              <Link to="/account" className="btn btn-primary btn-lg">
+                View my trips
+              </Link>
+              <button className="btn btn-outline btn-lg" onClick={onClose}>
+                Close
+              </button>
+            </div>
           </div>
         ) : (
           <>
@@ -118,12 +119,11 @@ const Reserve = ({ hotelId, onClose }) => {
                   <div className="rSelectRooms">
                     {room.roomNumbers.map((rn) => {
                       const available = isAvailable(rn);
-                      const active = isSelected(rn._id);
                       return (
                         <button
                           type="button"
                           key={rn._id}
-                          className={`roomChip ${active ? "active" : ""}`}
+                          className={`roomChip ${isSelected(rn._id) ? "active" : ""}`}
                           disabled={!available}
                           onClick={() => toggle(rn._id, room.price)}
                           title={available ? `Room ${rn.number}` : `Room ${rn.number} is booked for these dates`}

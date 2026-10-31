@@ -1,0 +1,286 @@
+.accountPage {
+  padding-top: 32px;
+}
+
+.accountHead {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.accountAvatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #1a1a1a;
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+
+.accountName {
+  font-size: 26px;
+  font-weight: 800;
+}
+
+.tabs {
+  display: flex;
+  gap: 4px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 24px;
+}
+
+.tab {
+  background: none;
+  border: none;
+  border-bottom: 3px solid transparent;
+  padding: 10px 16px;
+  font-weight: 600;
+  color: var(--muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: -1px;
+}
+
+.tab:hover {
+  color: var(--text);
+}
+
+.tab.active {
+  color: var(--brand);
+  border-bottom-color: var(--brand);
+}
+
+/* ---- Trips ---- */
+
+.tripGroup + .tripGroup {
+  margin-top: 32px;
+}
+
+.tripGroupTitle {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+
+.bookingItem {
+  display: flex;
+  gap: 20px;
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: white;
+  margin-bottom: 14px;
+}
+
+.bookingItem.isCancelled {
+  opacity: 0.7;
+}
+
+.bookingImgLink {
+  flex-shrink: 0;
+}
+
+.bookingImg {
+  width: 180px;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 10px;
+  background: #dfe5ee;
+}
+
+.bookingMain {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.bookingTop {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.bookingHotel {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.bookingCity {
+  font-size: 14px;
+}
+
+.statusPill {
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 999px;
+  text-transform: capitalize;
+  flex-shrink: 0;
+}
+
+.statusPill.confirmed {
+  background: #e7f6ec;
+  color: var(--success);
+}
+
+.statusPill.cancelled {
+  background: #fdecec;
+  color: var(--danger);
+}
+
+.bookingFacts {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  font-size: 14px;
+}
+
+.bookingFacts small {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+
+.bookingActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.bookingActions .btn {
+  padding: 8px 14px;
+  font-size: 14px;
+}
+
+.bookingActions a.btn:hover {
+  text-decoration: none;
+}
+
+.bookingRef {
+  margin-left: auto;
+  font-size: 12px;
+}
+
+.btn-danger {
+  background: var(--danger);
+  color: white;
+}
+
+.btn-danger:hover:not(:disabled) {
+  background: #a51f1f;
+}
+
+.btn-danger-outline:hover:not(:disabled) {
+  border-color: var(--danger);
+  color: var(--danger);
+}
+
+.bookingConfirm {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 12px 14px;
+  border-radius: var(--radius-sm);
+  background: #fdecec;
+  color: var(--danger);
+  font-weight: 500;
+}
+
+.bookingEdit {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--bg-soft);
+}
+
+.bookingEdit .rdrCalendarWrapper {
+  border-radius: var(--radius-sm);
+}
+
+.bookingEditSide {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 200px;
+  flex: 1;
+}
+
+/* ---- Profile ---- */
+
+.profileForm {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 720px;
+}
+
+.profileSection {
+  padding: 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: white;
+}
+
+.profileSection h2 {
+  font-size: 17px;
+  margin-bottom: 4px;
+}
+
+.profileSection > p {
+  font-size: 14px;
+}
+
+.profileGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 14px;
+}
+
+@media (max-width: 760px) {
+  .bookingItem {
+    flex-direction: column;
+  }
+
+  .bookingImg {
+    width: 100%;
+    height: 160px;
+  }
+
+  .bookingFacts {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .profileGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .bookingRef {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .bookingEdit .rdrCalendarWrapper {
+    max-width: 100%;
+    overflow-x: auto;
+  }
+}

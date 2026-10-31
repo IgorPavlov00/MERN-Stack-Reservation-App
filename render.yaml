@@ -16,3 +16,8 @@ services:
         generateValue: true
       - key: MONGO
         sync: false # set in the Render dashboard (your MongoDB Atlas connection string)
+      # Booking emails via Brevo (Render's free plan blocks SMTP). Optional: leave empty to disable.
+      - key: BREVO_API_KEY
+        sync: false
+      - key: MAIL_FROM
+        sync: false # a sender address you verified in Brevo

@@ -92,3 +92,14 @@
     font-size: 18px;
   }
 }
+
+a.navUser {
+  color: white;
+  padding: 4px 10px 4px 4px;
+  border-radius: 999px;
+}
+
+a.navUser:hover {
+  background: rgba(255, 255, 255, 0.12);
+  text-decoration: none;
+}

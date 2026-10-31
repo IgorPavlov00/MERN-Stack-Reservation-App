@@ -8,6 +8,8 @@ import authRoute from "./api/routes/auth.js";
 import usersRoute from "./api/routes/users.js";
 import hotelsRoute from "./api/routes/hotels.js";
 import roomsRoute from "./api/routes/rooms.js";
+import bookingsRoute from "./api/routes/bookings.js";
+import reviewsRoute from "./api/routes/reviews.js";
 
 dotenv.config({ quiet: true });
 
@@ -32,6 +34,8 @@ app.use("/api/auth", authRoute);
 app.use("/api/users", usersRoute);
 app.use("/api/hotels", hotelsRoute);
 app.use("/api/rooms", roomsRoute);
+app.use("/api/bookings", bookingsRoute);
+app.use("/api/reviews", reviewsRoute);
 app.use("/api", (req, res) => res.status(404).json({ success: false, status: 404, message: "Not found" }));
 
 // Serve the built React app; any non-API route falls back to index.html (SPA routing).

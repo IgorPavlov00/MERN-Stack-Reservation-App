@@ -26,10 +26,10 @@ const Navbar = () => {
           </Link>
           {user ? (
             <>
-              <span className="navUser" title={user.email}>
+              <Link to="/account" className="navUser" title="My trips & profile">
                 <span className="navAvatar">{user.username[0]?.toUpperCase()}</span>
                 <span className="navUserName">{user.username}</span>
-              </span>
+              </Link>
               <button className="btn btn-ghost-light navBtn" onClick={handleLogout}>
                 <FontAwesomeIcon icon={faRightFromBracket} />
                 <span className="navBtnText">Log out</span>

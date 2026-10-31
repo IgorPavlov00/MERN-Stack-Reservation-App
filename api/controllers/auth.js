@@ -65,3 +65,15 @@ export const logout = (req, res) => {
   const { maxAge, ...opts } = cookieOptions();
   res.clearCookie("access_token", opts).status(200).json({ message: "Logged out." });
 };
+
+// GET /api/auth/me - the logged-in user's profile (used to validate the session)
+export const me = async (req, res, next) => {
+  try {
+    const user = await User.findById(req.user.id).select("-password");
+    if (!user) return next(createError(401, "You are not authenticated!"));
+    const { isAdmin, ...details } = user._doc;
+    res.status(200).json({ details, isAdmin });
+  } catch (err) {
+    next(err);
+  }
+};

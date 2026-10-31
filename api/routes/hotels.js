@@ -9,7 +9,8 @@ import {
   getHotels,
   updateHotel,
 } from "../controllers/hotel.js";
-import { verifyAdmin } from "../utils/verifyToken.js";
+import { getReviews, upsertReview } from "../controllers/review.js";
+import { verifyAdmin, verifyToken } from "../utils/verifyToken.js";
 const router = express.Router();
 
 //CREATE
@@ -28,5 +29,7 @@ router.get("/", getHotels);
 router.get("/countByCity", countByCity);
 router.get("/countByType", countByType);
 router.get("/room/:id", getHotelRooms);
+router.get("/:id/reviews", getReviews);
+router.post("/:id/reviews", verifyToken, upsertReview);
 
 export default router;

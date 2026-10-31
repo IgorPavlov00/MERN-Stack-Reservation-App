@@ -8,6 +8,7 @@ const List = lazy(() => import("./pages/list/List"));
 const Hotel = lazy(() => import("./pages/hotel/Hotel"));
 const Login = lazy(() => import("./pages/auth/Login"));
 const Register = lazy(() => import("./pages/auth/Register"));
+const Account = lazy(() => import("./pages/account/Account"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 const ScrollToTop = () => {
@@ -29,6 +30,7 @@ function App() {
           <Route path="/hotels/:id" element={<Hotel />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/account" element={<Account />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>

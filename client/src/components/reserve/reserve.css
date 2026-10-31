@@ -202,3 +202,18 @@
     max-width: none;
   }
 }
+
+.rSmall {
+  font-size: 14px;
+}
+
+.rSuccessActions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.rSuccessActions .btn:hover {
+  text-decoration: none;
+}

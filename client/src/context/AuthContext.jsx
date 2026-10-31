@@ -12,8 +12,10 @@ const readStored = () => {
   }
 };
 
+const toUser = (res) => ({ ...res.details, isAdmin: res.isAdmin });
+
 export const AuthProvider = ({ children }) => {
-  // The httpOnly cookie is the real credential; this is just the profile to display.
+  // The httpOnly cookie is the real credential; this is the cached profile to display.
   const [user, setUser] = useState(readStored);
 
   useEffect(() => {
@@ -25,9 +27,19 @@ export const AuthProvider = ({ children }) => {
     }
   }, [user]);
 
+  // On load, confirm the session is still valid (cookie may have expired).
+  useEffect(() => {
+    if (!readStored()) return;
+    api("/auth/me")
+      .then((res) => setUser(toUser(res)))
+      .catch((err) => {
+        if (err.status === 401 || err.status === 403) setUser(null);
+      });
+  }, []);
+
   const login = useCallback(async (credentials) => {
     const res = await api("/auth/login", { method: "POST", body: credentials });
-    setUser({ ...res.details, isAdmin: res.isAdmin });
+    setUser(toUser(res));
   }, []);
 
   const logout = useCallback(async () => {
@@ -38,8 +50,16 @@ export const AuthProvider = ({ children }) => {
     }
   }, []);
 
+  const updateProfile = useCallback(
+    async (changes) => {
+      const res = await api(`/users/${user._id}`, { method: "PUT", body: changes });
+      setUser(toUser(res));
+    },
+    [user]
+  );
+
   return (
-    <AuthContext.Provider value={{ user, login, logout, setUser }}>
+    <AuthContext.Provider value={{ user, login, logout, updateProfile }}>
       {children}
     </AuthContext.Provider>
   );

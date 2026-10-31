@@ -22,6 +22,7 @@ import "react-date-range/dist/theme/default.css";
 import Navbar from "../../components/navbar/Navbar";
 import Footer from "../../components/footer/Footer";
 import Reserve from "../../components/reserve/Reserve";
+import Reviews from "../../components/reviews/Reviews";
 import useFetch from "../../hooks/useFetch";
 import { useAuth } from "../../context/AuthContext";
 import { useSearch } from "../../context/SearchContext";
@@ -48,7 +49,7 @@ const Hotel = () => {
   const [reserveOpen, setReserveOpen] = useState(false);
   const [dateOpen, setDateOpen] = useState(false);
 
-  const { data, loading, error } = useFetch(`/hotels/find/${id}`);
+  const { data, loading, error, reFetch } = useFetch(`/hotels/find/${id}`);
 
   const nights = nightsBetween(dates[0].startDate, dates[0].endDate);
   const photos = data?.photos ?? [];
@@ -83,12 +84,12 @@ const Hotel = () => {
     <div className="page">
       <Navbar />
       <main className="container hotelPage">
-        {loading ? (
+        {loading && !data ? (
           <>
             <div className="skeleton" style={{ height: 36, width: "40%", marginBottom: 16 }} />
             <div className="skeleton" style={{ height: 420 }} />
           </>
-        ) : error ? (
+        ) : error && !data ? (
           <div className="emptyState">
             <h3>
               {error.status === 404 || error.status === 400
@@ -124,7 +125,9 @@ const Hotel = () => {
                 <div className="hotelScore">
                   <div>
                     <div className="hotelScoreLabel">{ratingLabel(data.rating)}</div>
-                    <div className="muted hotelScoreSub">Guest rating</div>
+                    <div className="muted hotelScoreSub">
+                      {data.reviewCount ? `${data.reviewCount} review${data.reviewCount > 1 ? "s" : ""}` : "Guest rating"}
+                    </div>
                   </div>
                   <span className="scoreBadge">{score(data.rating)}</span>
                 </div>
@@ -213,6 +216,8 @@ const Hotel = () => {
                 <p className="bookingNote">You will choose your rooms in the next step.</p>
               </aside>
             </div>
+
+            <Reviews hotelId={id} onChanged={reFetch} />
           </>
         )}
       </main>

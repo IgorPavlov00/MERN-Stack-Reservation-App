@@ -1,0 +1,158 @@
+.reviews {
+  margin-top: 48px;
+  padding-top: 32px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  scroll-margin-top: 80px;
+}
+
+.reviewsHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.reviewsSummary {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.reviewForm {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg-soft);
+  max-width: 720px;
+}
+
+.reviewForm h3 {
+  font-size: 17px;
+}
+
+.scorePicker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.scoreOption {
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: white;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.scoreOption:hover {
+  border-color: var(--brand);
+  color: var(--brand);
+}
+
+.scoreOption.active {
+  background: var(--brand);
+  border-color: var(--brand);
+  color: white;
+}
+
+.scoreHint {
+  font-size: 13px;
+}
+
+.textarea {
+  height: auto;
+  padding: 10px 12px;
+  resize: vertical;
+  line-height: 1.5;
+}
+
+.reviewList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.reviewItem {
+  padding: 18px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: white;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.reviewTop {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.reviewAvatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--brand-light);
+  color: var(--brand);
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.reviewWho {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+}
+
+.reviewWho .muted {
+  font-size: 13px;
+}
+
+.verified {
+  color: var(--success);
+  font-weight: 600;
+  margin-left: 8px;
+}
+
+.reviewText {
+  font-size: 15px;
+  color: #374151;
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+}
+
+.reviewDelete {
+  align-self: flex-start;
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--muted);
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.reviewDelete:hover {
+  color: var(--danger);
+}
+
+@media (max-width: 760px) {
+  .reviewList {
+    grid-template-columns: 1fr;
+  }
+}
