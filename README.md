@@ -11,7 +11,7 @@ A full-stack hotel booking app built with MongoDB, Express, React and Node.js. S
 - **Reservations** – pick specific room numbers; already-booked nights are blocked (server rejects double bookings)
 - **My account** – see upcoming, past and cancelled trips; change dates or cancel; edit your profile and password
 - **Reviews** – 1–10 score and comment per hotel, "Verified stay" badge for guests who booked; hotel score updates live
-- **Email confirmations** – sent when a booking is made, changed or cancelled (via Brevo)
+- **Email confirmations** – sent when a booking is made, changed or cancelled (via Resend or Brevo)
 - **Auth** – register / sign in / sign out with JWT in an `httpOnly` cookie
 - **Admin API** – create/update/delete hotels and rooms (admin-only routes)
 - **Responsive UI** – works on desktop and mobile
@@ -50,8 +50,9 @@ npm run dev --prefix client # React app on http://localhost:3000 (proxies /api t
 | `MONGO` | MongoDB connection string                       |
 | `JWT`   | Long random secret used to sign login tokens    |
 | `PORT`  | Port for the server (default `8800`)            |
-| `BREVO_API_KEY` | Brevo API key for booking emails (optional) |
-| `MAIL_FROM` | Sender address verified in Brevo (optional) |
+| `RESEND_API_KEY` | Resend API key for booking emails (optional) |
+| `BREVO_API_KEY` | Brevo API key for booking emails (optional, alternative to Resend) |
+| `MAIL_FROM` | Sender address (optional with Resend: defaults to `onboarding@resend.dev`) |
 | `APP_URL` | Public site URL for email links (optional; Render sets it automatically) |
 
 ### Scripts
@@ -79,13 +80,20 @@ Render runs `npm install && npm run build`, then `npm start`. Health check: `/ap
 
 ### Email confirmations (optional)
 
-Render's free plan blocks outgoing SMTP, so emails are sent through [Brevo](https://www.brevo.com)'s HTTP API (free: 300 emails/day).
+Render's free plan blocks outgoing SMTP, so emails are sent over an HTTP API. Set **one** provider:
 
-1. Create a free Brevo account, then **Senders, Domains & Dedicated IPs → Senders → Add a sender** and verify the address you'll send from.
+**Resend** ([resend.com](https://resend.com), free: 3,000 emails/month)
+1. Create an account → **API Keys → Create API key**.
+2. In Render → **Environment**, set `RESEND_API_KEY`.
+3. Without a domain, Resend sends from `onboarding@resend.dev` and **only delivers to your own Resend account email** (good for testing).
+   To email any guest, add and verify a domain you own under **Domains**, then set `MAIL_FROM` to an address on it (e.g. `bookings@yourdomain.com`).
+
+**Brevo** ([brevo.com](https://www.brevo.com), free: 300 emails/day) — delivers to anyone without owning a domain
+1. **Senders, Domains & Dedicated IPs → Senders → Add a sender** and verify your address.
 2. **SMTP & API → API Keys → Generate a new API key**.
-3. In Render → your service → **Environment**, set `BREVO_API_KEY` and `MAIL_FROM` (the verified address), then redeploy.
+3. In Render → **Environment**, set `BREVO_API_KEY` and `MAIL_FROM` (the verified address).
 
-Without these variables the app works normally and simply skips sending emails.
+If both keys are set, Resend is used. Without these variables the app works normally and simply skips sending emails.
 
 > Note: Render's free plan sleeps after inactivity, so the first request can take ~30–60 seconds.
 
