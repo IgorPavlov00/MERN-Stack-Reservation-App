@@ -56,3 +56,20 @@
     min-height: 0;
   }
 }
+
+.pListImg {
+  transition: opacity 0.6s ease, transform 0.35s var(--ease-out), box-shadow 0.35s var(--ease-out);
+}
+
+.pListItem:hover .pListImg {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 14px 30px rgba(16, 24, 40, 0.16);
+}
+
+.pListTitles h3 {
+  transition: color 0.2s;
+}
+
+.pListItem:hover .pListTitles h3 {
+  color: var(--brand);
+}

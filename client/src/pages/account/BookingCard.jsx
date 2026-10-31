@@ -8,7 +8,7 @@ import "react-date-range/dist/theme/default.css";
 import { api } from "../../api";
 import { checkoutFor, dayStr, fromApiDay, nightsBetween } from "../../utils";
 
-const BookingCard = ({ booking, editable, onChanged }) => {
+const BookingCard = ({ booking, editable, onChanged, index = 0 }) => {
   const [mode, setMode] = useState(null); // "dates" | "cancel" | null
   const [range, setRange] = useState([
     { startDate: fromApiDay(booking.checkIn), endDate: fromApiDay(booking.checkOut), key: "selection" },
@@ -49,7 +49,7 @@ const BookingCard = ({ booking, editable, onChanged }) => {
   const cancel = () => run(() => api(`/bookings/${booking._id}/cancel`, { method: "POST" }));
 
   return (
-    <article className={`bookingItem ${booking.status === "cancelled" ? "isCancelled" : ""}`}>
+    <article className={`bookingItem ${booking.status === "cancelled" ? "isCancelled" : ""}`} style={{ "--i": Math.min(index, 8) }}>
       <Link to={`/hotels/${booking.hotel}`} className="bookingImgLink">
         {booking.hotelPhoto ? <img src={booking.hotelPhoto} alt="" className="bookingImg" /> : <div className="bookingImg" />}
       </Link>

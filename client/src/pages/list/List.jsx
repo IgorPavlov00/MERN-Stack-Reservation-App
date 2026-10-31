@@ -153,8 +153,8 @@ const List = () => {
                 <p className="lrCount">
                   {data.length} {data.length === 1 ? "property" : "properties"} found
                 </p>
-                {data.map((item) => (
-                  <SearchItem item={item} key={item._id} />
+                {data.map((item, i) => (
+                  <SearchItem item={item} index={i} key={item._id} />
                 ))}
               </>
             )}

@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHotel, faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
@@ -7,6 +8,18 @@ import "./navbar.css";
 const Navbar = () => {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 12);
+    onScroll();
+    const raf = requestAnimationFrame(onScroll); // re-check after route scroll-reset
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener("scroll", onScroll);
+    };
+  }, []);
 
   const handleLogout = async () => {
     await logout();
@@ -14,7 +27,7 @@ const Navbar = () => {
   };
 
   return (
-    <header className="navbar">
+    <header className={`navbar ${scrolled ? "scrolled" : ""}`}>
       <div className="container navContainer">
         <Link to="/" className="logo">
           <FontAwesomeIcon icon={faHotel} />

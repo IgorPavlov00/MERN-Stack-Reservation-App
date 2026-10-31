@@ -217,3 +217,68 @@
 .rSuccessActions .btn:hover {
   text-decoration: none;
 }
+
+/* ---- Motion ---- */
+.reserve {
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.rContainer {
+  animation: modalIn 0.4s var(--ease-spring) both;
+}
+
+@keyframes modalIn {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.94);
+  }
+}
+
+.rSuccess {
+  position: relative;
+}
+
+.rSuccessIcon {
+  animation: checkPop 0.6s var(--ease-spring) both;
+}
+
+@keyframes checkPop {
+  0% {
+    transform: scale(0) rotate(-30deg);
+    opacity: 0;
+  }
+  100% {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+.rSuccess h3,
+.rSuccess p,
+.rSuccessActions {
+  animation: fadeUp 0.5s var(--ease-out) 0.2s backwards;
+}
+
+.roomChip {
+  transition: all 0.18s var(--ease-out);
+}
+
+.roomChip:hover:not(:disabled) {
+  transform: translateY(-2px);
+}
+
+.roomChip.active {
+  animation: chipPop 0.3s var(--ease-spring);
+  box-shadow: 0 6px 14px rgba(10, 61, 143, 0.3);
+}
+
+@keyframes chipPop {
+  50% {
+    transform: scale(1.12);
+  }
+}
+
+.rTotal {
+  transition: color 0.2s;
+}

@@ -156,3 +156,36 @@
     grid-template-columns: 1fr;
   }
 }
+
+.reviewItem {
+  animation: fadeUp 0.5s var(--ease-out) backwards;
+  animation-delay: calc(var(--i, 0) * 60ms);
+  transition: box-shadow 0.3s var(--ease-out), transform 0.3s var(--ease-out);
+}
+
+.reviewItem:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow);
+}
+
+.scoreOption {
+  transition: all 0.18s var(--ease-out);
+}
+
+.scoreOption:hover {
+  transform: translateY(-2px);
+}
+
+.scoreOption.active {
+  animation: chipPop 0.3s var(--ease-spring);
+}
+
+@keyframes chipPop {
+  50% {
+    transform: scale(1.15);
+  }
+}
+
+.scoreHint {
+  animation: fadeUp 0.3s var(--ease-out);
+}

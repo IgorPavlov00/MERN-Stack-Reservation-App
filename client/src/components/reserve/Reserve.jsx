@@ -8,6 +8,7 @@ import { useSearch } from "../../context/SearchContext";
 import { useAuth } from "../../context/AuthContext";
 import { api } from "../../api";
 import { apiDay, checkoutFor, dayStr, nightsInRange } from "../../utils";
+import { Confetti } from "../motion/Motion";
 import "./reserve.css";
 
 const Reserve = ({ hotelId, onClose }) => {
@@ -81,6 +82,7 @@ const Reserve = ({ hotelId, onClose }) => {
 
         {status.state === "done" ? (
           <div className="rSuccess">
+            <Confetti />
             <FontAwesomeIcon icon={faCircleCheck} className="rSuccessIcon" />
             <h3>Your reservation is confirmed!</h3>
             <p className="muted">

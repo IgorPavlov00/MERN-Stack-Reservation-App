@@ -16,6 +16,24 @@ import "./header.css";
 import { useSearch } from "../../context/SearchContext";
 import { useAuth } from "../../context/AuthContext";
 
+const WORDS = ["hotel", "apartment", "villa", "resort", "cabin"];
+
+// Cycles through WORDS with a small slide animation.
+const RotatingWord = () => {
+  const [i, setI] = useState(0);
+  useEffect(() => {
+    const id = setInterval(() => setI((n) => (n + 1) % WORDS.length), 2400);
+    return () => clearInterval(id);
+  }, []);
+  return (
+    <span className="rotator">
+      <span key={WORDS[i]} className="rotatorWord">
+        {WORDS[i]}
+      </span>
+    </span>
+  );
+};
+
 const OPTION_FIELDS = [
   ["adult", "Adults", "Ages 13 or above", 1],
   ["children", "Children", "Ages 0-12", 0],
@@ -57,8 +75,16 @@ const Header = () => {
 
   return (
     <section className="hero">
+      <div className="heroBlobs" aria-hidden="true">
+        <span className="blob b1" />
+        <span className="blob b2" />
+        <span className="blob b3" />
+      </div>
       <div className="container heroInner">
-        <h1 className="heroTitle">Find your next stay</h1>
+        <span className="heroEyebrow">✦ Real-time availability · Instant confirmation</span>
+        <h1 className="heroTitle">
+          Find your next <RotatingWord />
+        </h1>
         <p className="heroDesc">
           Search hotels, apartments, resorts and more, and book in a couple of clicks.
         </p>
@@ -70,7 +96,7 @@ const Header = () => {
       </div>
 
       <div className="container">
-        <form className="searchBar" onSubmit={handleSearch}>
+        <form className="searchBar heroSearchIn" onSubmit={handleSearch}>
           <label className="searchField">
             <FontAwesomeIcon icon={faLocationDot} className="searchIcon" />
             <span className="searchFieldBody">

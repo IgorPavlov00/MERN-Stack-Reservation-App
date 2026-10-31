@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationDot, faCheck } from "@fortawesome/free-solid-svg-icons";
 import { ratingLabel, score } from "../../utils";
+import { FadeImg } from "../motion/Motion";
 import "./searchItem.css";
 
 const formatDistance = (m) => {
@@ -10,11 +11,11 @@ const formatDistance = (m) => {
   return n >= 1000 ? `${(n / 1000).toFixed(1)} km` : `${n} m`;
 };
 
-const SearchItem = ({ item }) => {
+const SearchItem = ({ item, index = 0 }) => {
   return (
-    <article className="searchItem">
-      <Link to={`/hotels/${item._id}`} className="siImgLink">
-        <img src={item.photos?.[0]} alt="" className="siImg" loading="lazy" />
+    <article className="searchItem" style={{ "--i": index }}>
+      <Link to={`/hotels/${item._id}`} className="siImgLink shine">
+        <FadeImg src={item.photos?.[0]} alt="" className="siImg" loading="lazy" />
       </Link>
       <div className="siDesc">
         <div className="siHead">

@@ -46,8 +46,8 @@ const Trips = () => {
         <h2 className="tripGroupTitle">
           {title} <span className="muted">({list.length})</span>
         </h2>
-        {list.map((b) => (
-          <BookingCard key={b._id} booking={b} editable={editable} onChanged={reFetch} />
+        {list.map((b, i) => (
+          <BookingCard key={b._id} index={i} booking={b} editable={editable} onChanged={reFetch} />
         ))}
       </section>
     );

@@ -146,8 +146,8 @@ const Reviews = ({ hotelId, onChanged }) => {
         <p className="muted">No reviews yet. Be the first to share your experience!</p>
       ) : (
         <ul className="reviewList">
-          {data.map((r) => (
-            <li key={r._id} className="reviewItem">
+          {data.map((r, i) => (
+            <li key={r._id} className="reviewItem" style={{ "--i": Math.min(i, 8) }}>
               <div className="reviewTop">
                 <span className="reviewAvatar">{r.username[0]?.toUpperCase()}</span>
                 <div className="reviewWho">

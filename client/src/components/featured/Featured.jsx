@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
+import { FadeImg } from "../motion/Motion";
 import "./featured.css";
 
 const photo = (id) => `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=800&q=70`;
@@ -26,11 +27,12 @@ const Featured = () => {
       {CITIES.map((city, i) => (
         <button
           type="button"
-          className={`featuredItem ${i < 2 ? "large" : ""}`}
+          className={`featuredItem stagger shine ${i < 2 ? "large" : ""}`}
+          style={{ "--i": i }}
           key={city.name}
           onClick={() => navigate(`/hotels?city=${encodeURIComponent(city.name)}`)}
         >
-          <img src={city.img} alt="" className="featuredImg" loading="lazy" />
+          <FadeImg src={city.img} alt="" className="featuredImg" loading="lazy" />
           <div className="featuredTitles">
             <h3>{city.name}</h3>
             <span>

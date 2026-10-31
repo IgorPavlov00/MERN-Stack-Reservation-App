@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
+import { FadeImg } from "../motion/Motion";
 import "./propertyList.css";
 
 const IMAGES = {
@@ -20,14 +21,15 @@ const PropertyList = () => {
     <div className="pList">
       {loading
         ? Object.keys(IMAGES).map((k) => <div key={k} className="pListItem skeleton" />)
-        : data.map((p) => (
+        : data.map((p, i) => (
             <button
               type="button"
-              className="pListItem"
+              className="pListItem stagger"
+              style={{ "--i": i }}
               key={p.type}
               onClick={() => navigate(`/hotels?type=${p.type}`)}
             >
-              <img src={IMAGES[p.type]} alt="" className="pListImg" loading="lazy" />
+              <FadeImg src={IMAGES[p.type]} alt="" className="pListImg" loading="lazy" />
               <div className="pListTitles">
                 <h3>{p.label[0].toUpperCase() + p.label.slice(1)}</h3>
                 <span>

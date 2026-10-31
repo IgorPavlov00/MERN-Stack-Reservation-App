@@ -104,3 +104,30 @@
     grid-template-columns: 1fr;
   }
 }
+
+.fpImgWrap {
+  overflow: hidden;
+}
+
+.fpImg {
+  transition: opacity 0.6s ease, transform 0.6s var(--ease-out);
+}
+
+.fpCard:hover .fpImg {
+  transform: scale(1.07);
+}
+
+.fpCard {
+  transition: box-shadow 0.35s var(--ease-out), transform 0.35s var(--ease-out), border-color 0.3s;
+}
+
+.fpCard:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px rgba(16, 24, 40, 0.14);
+  border-color: transparent;
+}
+
+.fpType {
+  z-index: 3;
+  backdrop-filter: blur(6px);
+}

@@ -378,3 +378,69 @@
     right: 8px;
   }
 }
+
+/* ---- Motion ---- */
+.hotelHead > div {
+  animation: fadeUp 0.6s var(--ease-out) backwards;
+}
+
+.galleryItem {
+  animation: galleryIn 0.7s var(--ease-out) backwards;
+}
+
+.galleryItem:nth-child(2) { animation-delay: 0.08s; }
+.galleryItem:nth-child(3) { animation-delay: 0.16s; }
+.galleryItem:nth-child(4) { animation-delay: 0.24s; }
+.galleryItem:nth-child(5) { animation-delay: 0.32s; }
+
+@keyframes galleryIn {
+  from {
+    opacity: 0;
+    transform: scale(1.04);
+    filter: blur(6px);
+  }
+}
+
+.galleryAll {
+  animation: fadeUp 0.5s var(--ease-out) 0.5s backwards;
+}
+
+.hotelBody {
+  animation: fadeUp 0.6s var(--ease-out) 0.15s backwards;
+}
+
+.amenities li {
+  transition: transform 0.25s var(--ease-out);
+}
+
+.amenities li:hover {
+  transform: translateX(4px);
+}
+
+.bookingCard {
+  transition: box-shadow 0.3s var(--ease-out), transform 0.3s var(--ease-out);
+}
+
+.bookingCard:hover {
+  box-shadow: 0 18px 40px rgba(16, 24, 40, 0.14);
+}
+
+.bookingCalendar {
+  animation: popIn 0.25s var(--ease-out) both;
+}
+
+.slider {
+  animation: fadeIn 0.25s ease both;
+}
+
+.sliderImg {
+  animation: popIn 0.35s var(--ease-out) both;
+}
+
+.sliderBtn {
+  transition: background 0.2s, transform 0.25s var(--ease-spring);
+}
+
+.sliderBtn:hover {
+  transform: scale(1.1);
+}

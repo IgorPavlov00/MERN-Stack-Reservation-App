@@ -17,6 +17,8 @@
   --shadow: 0 6px 20px rgba(16, 24, 40, 0.08);
   --shadow-lg: 0 16px 40px rgba(16, 24, 40, 0.14);
   --container: 1140px;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
   font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   color: var(--text);
 }
@@ -301,4 +303,195 @@ select {
 .emptyState h3 {
   color: var(--text);
   margin-bottom: 6px;
+}
+
+/* ================= Motion & polish ================= */
+
+html {
+  scroll-behavior: smooth;
+}
+
+::selection {
+  background: var(--accent);
+  color: #1a1a1a;
+}
+
+/* Each route fades in */
+.pageFade {
+  animation: pageIn 0.45s var(--ease-out) backwards;
+}
+
+@keyframes pageIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+}
+
+@keyframes popIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.96);
+  }
+}
+
+/* Buttons: soft lift + a light sheen sweeping across primary/accent buttons */
+.btn {
+  position: relative;
+  overflow: hidden;
+  transition:
+    background-color 0.2s,
+    border-color 0.2s,
+    color 0.2s,
+    box-shadow 0.25s var(--ease-out),
+    transform 0.25s var(--ease-out);
+}
+
+.btn-primary:hover:not(:disabled),
+.btn-accent:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(10, 61, 143, 0.25);
+}
+
+.btn-accent:hover:not(:disabled) {
+  box-shadow: 0 8px 20px rgba(255, 183, 3, 0.35);
+}
+
+.btn-primary::after,
+.btn-accent::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+  transform: skewX(-20deg);
+  pointer-events: none;
+}
+
+.btn-primary:hover:not(:disabled)::after,
+.btn-accent:hover:not(:disabled)::after {
+  animation: sheen 0.8s var(--ease-out);
+}
+
+@keyframes sheen {
+  to {
+    left: 130%;
+  }
+}
+
+.btn:active:not(:disabled) {
+  transform: translateY(1px) scale(0.98);
+}
+
+/* Card shine on hover (add class="shine" to a card with position:relative) */
+.shine {
+  position: relative;
+  isolation: isolate;
+}
+
+.shine::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(115deg, transparent 35%, rgba(255, 255, 255, 0.28) 50%, transparent 65%);
+  background-size: 250% 100%;
+  background-position: 150% 0;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.shine:hover::before {
+  opacity: 1;
+  animation: shineSweep 0.9s var(--ease-out);
+}
+
+@keyframes shineSweep {
+  from {
+    background-position: 150% 0;
+  }
+  to {
+    background-position: -50% 0;
+  }
+}
+
+/* Back to top */
+.toTop {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 30;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: none;
+  background: var(--brand);
+  color: white;
+  box-shadow: var(--shadow-lg);
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(16px) scale(0.8);
+  pointer-events: none;
+  transition: opacity 0.3s, transform 0.35s var(--ease-spring), background 0.2s;
+}
+
+.toTop.show {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+
+.toTop:hover {
+  background: var(--brand-dark);
+}
+
+/* Section headings get a small accent bar */
+.sectionTitle {
+  position: relative;
+  padding-left: 14px;
+}
+
+.sectionTitle::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.15em;
+  bottom: 0.15em;
+  width: 4px;
+  border-radius: 4px;
+  background: linear-gradient(var(--accent), #ff8a00);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+}
+
+.alert {
+  animation: fadeUp 0.3s var(--ease-out);
 }

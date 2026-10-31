@@ -141,3 +141,28 @@
     width: 100%;
   }
 }
+
+.searchItem {
+  animation: fadeUp 0.55s var(--ease-out) backwards;
+  animation-delay: calc(var(--i, 0) * 70ms);
+  transition: box-shadow 0.3s var(--ease-out), transform 0.3s var(--ease-out), border-color 0.3s;
+}
+
+.searchItem:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 34px rgba(16, 24, 40, 0.12);
+  border-color: transparent;
+}
+
+.siImgLink {
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.siImg {
+  transition: opacity 0.6s ease, transform 0.6s var(--ease-out);
+}
+
+.searchItem:hover .siImg {
+  transform: scale(1.06);
+}

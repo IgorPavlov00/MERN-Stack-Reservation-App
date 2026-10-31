@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
+import { FadeImg } from "../motion/Motion";
 import { ratingLabel, score } from "../../utils";
 import "./featuredProperties.css";
 
@@ -19,10 +20,10 @@ const FeaturedProperties = () => {
     <div className="fpGrid">
       {loading
         ? Array.from({ length: 4 }, (_, i) => <div key={i} className="fpSkeleton skeleton" />)
-        : data.map((hotel) => (
-            <Link to={`/hotels/${hotel._id}`} className="fpCard" key={hotel._id}>
-              <div className="fpImgWrap">
-                <img src={hotel.photos?.[0]} alt="" className="fpImg" loading="lazy" />
+        : data.map((hotel, i) => (
+            <Link to={`/hotels/${hotel._id}`} className="fpCard stagger" style={{ "--i": i }} key={hotel._id}>
+              <div className="fpImgWrap shine">
+                <FadeImg src={hotel.photos?.[0]} alt="" className="fpImg" loading="lazy" />
                 <span className="tag fpType">{hotel.type}</span>
               </div>
               <div className="fpBody">
