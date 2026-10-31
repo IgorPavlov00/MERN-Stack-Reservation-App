@@ -1,8 +1,25 @@
 # 🏨 Staybook — MERN Hotel Reservation App
 
+[![Live demo](https://img.shields.io/badge/Live%20demo-staybook--rbe7.onrender.com-0a3d8f?style=for-the-badge&logo=render&logoColor=white)](https://staybook-rbe7.onrender.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-A full-stack hotel booking app built with MongoDB, Express, React and Node.js. Search stays by destination, dates and guests, browse property details and reserve rooms.
+A full-stack hotel booking app built with MongoDB, Express, React and Node.js. Search stays by destination, dates and guests, browse property details, reserve rooms, manage your trips and leave reviews.
+
+### 👉 Try it live: **[staybook-rbe7.onrender.com](https://staybook-rbe7.onrender.com/)**
+
+> Hosted on Render's free plan — if the site has been idle, the first visit can take 30–60 seconds to wake up.
+
+<p align="center">
+  <a href="https://staybook-rbe7.onrender.com/"><img src="docs/screenshots/home.jpg" alt="Staybook homepage" width="900"></a>
+</p>
+
+## 📸 Screenshots
+
+| Home — destinations, property types & top-rated stays | Search results with filters |
+| :---: | :---: |
+| <img src="docs/screenshots/home-sections.jpg" alt="Homepage sections" width="440"> | <img src="docs/screenshots/search-results.jpg" alt="Search results" width="440"> |
+| **Hotel page — gallery, amenities & booking card** | **Guest reviews with verified-stay badges** |
+| <img src="docs/screenshots/hotel.jpg" alt="Hotel details page" width="440"> | <img src="docs/screenshots/reviews.jpg" alt="Guest reviews" width="440"> |
 
 ## ✨ Features
 
@@ -14,7 +31,7 @@ A full-stack hotel booking app built with MongoDB, Express, React and Node.js. S
 - **Email confirmations** – sent when a booking is made, changed or cancelled (via Resend or Brevo)
 - **Auth** – register / sign in / sign out with JWT in an `httpOnly` cookie
 - **Admin API** – create/update/delete hotels and rooms (admin-only routes)
-- **Responsive UI** – works on desktop and mobile
+- **Modern, animated UI** – scroll reveals, animated hero, live stats, frosted navbar; responsive and respects reduced-motion settings
 
 ## 💻 Tech stack
 
