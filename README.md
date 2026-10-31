@@ -1,42 +1,86 @@
-# 🏨 Booking.com Clone - MERN Stack
+# 🏨 Staybook — MERN Hotel Reservation App
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-A full-stack web application cloning core Booking.com functionality using the MERN stack. Users can search, browse, and manage bookings. Built with modern technologies for a robust and scalable platform.
+A full-stack hotel booking app built with MongoDB, Express, React and Node.js. Search stays by destination, dates and guests, browse property details and reserve rooms.
 
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/59a66eca-db3d-476c-9105-70aefa8b6675" alt="Booking.com Clone Screenshot" width="700">
-</p>
+## ✨ Features
 
-## ✨ Key Features
+- **Search & filters** – destination (prefix match), property type, price range, dates and guests
+- **Hotel pages** – photo gallery with lightbox, amenities, live price estimate for the selected stay
+- **Reservations** – pick specific room numbers; already-booked nights are blocked (server rejects double bookings)
+- **Auth** – register / sign in / sign out with JWT in an `httpOnly` cookie
+- **Admin API** – create/update/delete hotels and rooms (admin-only routes)
+- **Responsive UI** – works on desktop and mobile
 
-*   **🔒 Secure Authentication:** JWT (JSON Web Tokens) and HTTP-only cookies for registration and login.
-*   **🔍 Flexible Search:** Search accommodations by destination, dates, and number of guests.
-*   **🏠 Detailed Listings:** Comprehensive property information with images, descriptions, amenities, and reviews.
-*   **📝 Booking Management:** Create, update, and delete bookings. View and manage all bookings in one place.
-*   **⚙️ Admin Panel (Optional):** Manage properties, users, and bookings through an administrative interface.
-*   **📱 Responsive Design:** Seamless experience across devices.
+## 💻 Tech stack
 
-## 💻 Tech Stack
+| Layer    | Tech                                                       |
+| -------- | ---------------------------------------------------------- |
+| Frontend | React 19, React Router 7, Vite, react-date-range, Font Awesome |
+| Backend  | Node.js, Express 4, Mongoose, JWT, bcrypt                  |
+| Database | MongoDB (Atlas)                                            |
 
-**Frontend**
+In production a single Express server serves both the API (`/api/*`) and the built React app.
 
-React <img src="https://img.icons8.com/color/30/000000/react-native.png" width="20" height="20" alt="React Icon"/> &nbsp;  &nbsp; HTML5 <img src="https://img.icons8.com/color/30/000000/html-5--v1.png" width="20" height="20" alt="HTML5 Icon"/> &nbsp; CSS3 <img src="https://img.icons8.com/color/30/000000/css3.png" width="20" height="20" alt="CSS3 Icon"/>
+## 🚀 Running locally
 
-**Backend**
+**Prerequisites:** Node.js 20+ and a MongoDB database (local or [MongoDB Atlas](https://www.mongodb.com/atlas)).
 
-Node.js <img src="https://img.icons8.com/color/30/000000/nodejs.png" width="20" height="20" alt="Node.js Icon"/> &nbsp; Express.js <img src="https://img.icons8.com/fluency/30/000000/express-js.png" width="20" height="20" alt="Express.js Icon"/>
+```bash
+git clone https://github.com/IgorPavlov00/MERN-Stack-Reservation-App.git
+cd MERN-Stack-Reservation-App
 
-**Database**
+cp .env.example .env        # then fill in MONGO and JWT
+npm install
+npm install --prefix client
 
-MongoDB <img src="https://img.icons8.com/color/30/000000/mongodb.png" width="20" height="20" alt="MongoDB Icon"/>
+npm run seed                # optional: adds sample hotels & rooms
+npm run dev                 # API on http://localhost:8800
+npm run dev --prefix client # React app on http://localhost:3000 (proxies /api to :8800)
+```
 
-## 🚀 Installation
+### Environment variables
 
-1.  **Clone the Repository:**
+| Name    | Description                                     |
+| ------- | ----------------------------------------------- |
+| `MONGO` | MongoDB connection string                       |
+| `JWT`   | Long random secret used to sign login tokens    |
+| `PORT`  | Port for the server (default `8800`)            |
 
-    ```bash
-    git clone [https://github.com/YOUR_USERNAME/booking-com-clone.git](https://github.com/YOUR_USERNAME/booking-com-clone.git)
-    cd booking-com-clone
-    ```
+### Scripts
 
+| Command                     | What it does                                         |
+| --------------------------- | ---------------------------------------------------- |
+| `npm start`                 | Start the production server                          |
+| `npm run dev`               | Start the API with nodemon                           |
+| `npm run build`             | Install client deps and build the React app          |
+| `npm run seed`              | Seed sample data (skips if hotels already exist)     |
+| `npm run seed -- --reset`   | **Deletes all hotels & rooms**, then seeds           |
+
+To make a user an admin, set `isAdmin: true` on their document in MongoDB.
+
+## ☁️ Deploying to Render
+
+The repo includes a [`render.yaml`](render.yaml) Blueprint.
+
+1. In MongoDB Atlas → **Network Access**, allow `0.0.0.0/0` (Render uses dynamic IPs).
+2. On [Render](https://dashboard.render.com): **New → Blueprint**, pick this repository.
+3. When prompted, set `MONGO` to your Atlas connection string (`JWT` is generated automatically).
+4. After the first deploy, seed the database once from your machine: `npm run seed` (with `MONGO` pointing at the same database).
+
+Render runs `npm install && npm run build`, then `npm start`. Health check: `/api/health`.
+
+> Note: Render's free plan sleeps after inactivity, so the first request can take ~30–60 seconds.
+
+## 📡 API overview
+
+| Method | Route                              | Auth   |
+| ------ | ---------------------------------- | ------ |
+| POST   | `/api/auth/register`, `/login`, `/logout` | –      |
+| GET    | `/api/hotels?city=&type=&min=&max=&featured=&limit=` | –      |
+| GET    | `/api/hotels/find/:id`, `/api/hotels/room/:id` | –      |
+| GET    | `/api/hotels/countByCity?cities=a,b`, `/countByType` | –      |
+| PUT    | `/api/rooms/availability/:roomNumberId` `{ dates: [] }` | user   |
+| POST/PUT/DELETE | `/api/hotels…`, `/api/rooms…`  | admin  |
+| GET/PUT/DELETE  | `/api/users/:id`               | owner or admin |

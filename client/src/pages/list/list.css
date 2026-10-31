@@ -1,0 +1,136 @@
+.listPage {
+  padding-top: 28px;
+}
+
+.listTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.listHeading {
+  font-size: 28px;
+  font-weight: 800;
+}
+
+.filtersToggle {
+  display: none;
+}
+
+.listWrapper {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.listSearch {
+  position: sticky;
+  top: 84px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: white;
+  box-shadow: var(--shadow-sm);
+}
+
+.lsTitle {
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.lsDateField {
+  position: relative;
+}
+
+.lsDates {
+  text-align: left;
+  cursor: pointer;
+}
+
+.lsCalendar {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  z-index: 15;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}
+
+.lsChips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.chip {
+  border: 1px solid var(--border);
+  background: white;
+  border-radius: 999px;
+  padding: 5px 12px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  text-transform: capitalize;
+}
+
+.chip:hover {
+  border-color: var(--brand);
+}
+
+.chip.active {
+  background: var(--brand);
+  border-color: var(--brand);
+  color: white;
+}
+
+.lsPrice {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.listResult {
+  min-width: 0;
+}
+
+.lrCount {
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.resultSkeleton {
+  height: 220px;
+  margin-bottom: 16px;
+}
+
+@media (max-width: 860px) {
+  .listWrapper {
+    grid-template-columns: 1fr;
+  }
+
+  .filtersToggle {
+    display: inline-flex;
+  }
+
+  .listSearch {
+    display: none;
+    position: static;
+  }
+
+  .listSearch.open {
+    display: flex;
+  }
+
+  .listHeading {
+    font-size: 23px;
+  }
+}

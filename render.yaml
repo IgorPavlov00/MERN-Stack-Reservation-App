@@ -1,0 +1,18 @@
+# Render Blueprint: one Node web service that serves both the API and the built React app.
+services:
+  - type: web
+    name: staybook
+    runtime: node
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NODE_VERSION
+        value: 22
+      - key: JWT
+        generateValue: true
+      - key: MONGO
+        sync: false # set in the Render dashboard (your MongoDB Atlas connection string)

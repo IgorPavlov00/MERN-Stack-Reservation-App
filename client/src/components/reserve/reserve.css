@@ -1,0 +1,204 @@
+.reserve {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  background: rgba(10, 14, 22, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  animation: fadeIn 0.15s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+}
+
+.rContainer {
+  width: 100%;
+  max-width: 600px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  background: white;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}
+
+.rHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--border);
+}
+
+.rHeading {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.rDates {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.rClose {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: var(--bg-soft);
+  font-size: 18px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.rClose:hover {
+  background: var(--border);
+}
+
+.rBody {
+  overflow-y: auto;
+  padding: 8px 24px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.rItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.rItem:last-of-type {
+  border-bottom: none;
+}
+
+.rItemInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.rTitle {
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.rDesc {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.rMeta {
+  display: flex;
+  gap: 16px;
+  font-size: 14px;
+  margin-top: 2px;
+}
+
+.rMeta svg {
+  color: var(--muted);
+}
+
+.rPrice {
+  font-weight: 700;
+}
+
+.rSelectRooms {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: flex-end;
+  flex-shrink: 0;
+  max-width: 200px;
+}
+
+.roomChip {
+  min-width: 52px;
+  height: 40px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.12s;
+}
+
+.roomChip:hover:not(:disabled) {
+  border-color: var(--brand);
+  color: var(--brand);
+}
+
+.roomChip.active {
+  background: var(--brand);
+  border-color: var(--brand);
+  color: white;
+}
+
+.roomChip:disabled {
+  background: var(--bg-soft);
+  color: #b0b8c5;
+  text-decoration: line-through;
+  cursor: not-allowed;
+}
+
+.rFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 24px;
+  border-top: 1px solid var(--border);
+  background: var(--bg-soft);
+}
+
+.rTotal {
+  font-size: 22px;
+  font-weight: 800;
+}
+
+.rTotalSub {
+  font-size: 13px;
+}
+
+.rSuccess {
+  padding: 36px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+}
+
+.rSuccessIcon {
+  font-size: 52px;
+  color: var(--success);
+}
+
+.rSuccess .btn {
+  margin-top: 12px;
+}
+
+@media (max-width: 520px) {
+  .rItem {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .rSelectRooms {
+    justify-content: flex-start;
+    max-width: none;
+  }
+}

@@ -1,24 +1,80 @@
 .footer {
-  width: 100%;
-  width: 1024px;
-  font-size: 12px;
-  font-family: "Khand";
+  margin-top: 64px;
+  background: var(--bg-soft);
+  border-top: 1px solid var(--border);
+  font-size: 14px;
+}
+
+.fInner {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+  padding-top: 40px;
+  padding-bottom: 32px;
+}
+
+.fBrand {
+  max-width: 280px;
+}
+
+.fLogo {
+  font-weight: 800;
+  font-size: 18px;
+  color: var(--brand);
+}
+
+.fLogo svg {
+  color: var(--accent);
+}
+
+.fBrand p {
+  margin-top: 8px;
+  color: var(--muted);
 }
 
 .fLists {
-  width: 100%;
   display: flex;
-  justify-content: space-between;
-  margin-bottom: 50px;
+  gap: 64px;
 }
 
-.fList {
+.fLists h4 {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.fLists ul {
   list-style: none;
   padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
-.fListItem {
-  margin-bottom: 10px;
-  color: #003580;
-  cursor: pointer;
+.fLists a {
+  color: var(--muted);
+}
+
+.fLists a:hover {
+  color: var(--brand);
+}
+
+.fBottom {
+  border-top: 1px solid var(--border);
+  padding-top: 16px;
+  padding-bottom: 24px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+@media (max-width: 760px) {
+  .fInner {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .fLists {
+    gap: 28px;
+    flex-wrap: wrap;
+  }
 }

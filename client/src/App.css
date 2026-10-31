@@ -1,12 +1,1 @@
-.homeContainer {
-  margin-top: 50px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 30px;
-}
-
-.homeTitle {
-  width: 1024px;
-  font-size: 20px;
-}
+/* Global styles live in index.css; this file is kept for app-level overrides. */

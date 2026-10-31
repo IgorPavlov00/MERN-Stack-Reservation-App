@@ -1,380 +1,245 @@
-.header {
-  background-color: #003580;
+.hero {
+  background:
+    radial-gradient(1200px 400px at 85% -10%, rgba(255, 183, 3, 0.18), transparent 60%),
+    radial-gradient(900px 400px at 0% 120%, rgba(255, 255, 255, 0.08), transparent 60%),
+    linear-gradient(135deg, var(--brand-dark), var(--brand));
   color: white;
-  padding: 30px 0;
-  font-family: "Khand";
+  padding: 56px 0 0;
+  margin-bottom: 44px;
 }
 
-.headerContainer {
-  width: 1200px;
-  max-width: 95%;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
+.heroInner {
+  padding-bottom: 48px;
 }
 
-.headerNav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 30px;
+.heroTitle {
+  font-size: clamp(32px, 5vw, 52px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  max-width: 640px;
 }
 
-/* ... (rest of the CSS code) ... */
+.heroDesc {
+  margin-top: 12px;
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.85);
+  max-width: 560px;
+}
 
-.headerNavItem {
+.heroCta {
+  margin-top: 24px;
+}
+
+/* Search bar overlaps the bottom edge of the hero */
+.searchBar {
   display: flex;
-  align-items: center;
-  margin-right: 30px;
-  cursor: pointer;
-  font-size: 16px;
+  align-items: stretch;
+  gap: 4px;
+  background: white;
+  color: var(--text);
+  border: 4px solid var(--accent);
+  border-radius: var(--radius);
+  padding: 4px;
+  box-shadow: var(--shadow-lg);
+  transform: translateY(50%);
+  margin-top: -36px;
+}
+
+.searchField {
   position: relative;
-  overflow: hidden;
-  transition: transform 0.3s ease;
-  border-block-style: solid;
-  border: yellowgreen;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 14px;
+  border-radius: 10px;
+  min-width: 0;
+  cursor: pointer;
 }
 
-.headerNavItem::before {
-  /* This is for the border around the whole item (icon and text) */
+.searchField:hover {
+  background: var(--bg-soft);
+}
+
+.searchField + .searchField::before {
   content: "";
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: calc(100% + 10px);
-  height: calc(100% + 10px);
-  border-radius: 8px;
-  border: 2px solid transparent;
-  transition: border-color 0.3s ease, transform 0.3s ease;
-  pointer-events: none;
+  left: -2px;
+  top: 14px;
+  bottom: 14px;
+  width: 1px;
+  background: var(--border);
 }
 
-.headerNavItem:hover::before {
-  border-color: white;
-  transform: scale(1.05) translate(-50%, -50%);
+.searchIcon {
+  color: var(--muted);
+  font-size: 18px;
+  flex-shrink: 0;
 }
 
-.headerNavItem svg {
-  margin-right: 10px;
-  width: 20px;
-  height: 20px;
-  transition: transform 0.3s ease, border-color 0.3s ease;
-  border: 2px solid transparent; /* Initially transparent */
-  border-radius: 5px;
-  padding: 5px;
-}
-
-.headerNavItem:hover svg {
-  transform: scale(1.45);
-  /* border-color: white; */
-}
-
-.headerNavItem span {
-  /* Target the text specifically */
-  transition: color 0.3s ease, border-color 0.3s ease; /* Add border-color transition */
-  border: 2px solid transparent; /* Initially transparent border */
-  border-radius: 8px; /* Same border-radius as buttons */
-  padding: 10px 20px; /* Same padding as buttons */
-}
-
-.headerNavItem:hover span {
-  border-color: white; /* White border on hover */
-}
-
-.headerNavItem.active {
-  font-weight: bold;
-}
-
-/* ... (rest of the CSS code) ... */
-
-.headerAuth {
-  display: flex;
-}
-
-.headerButton {
-  background-color: transparent;
-  color: white;
-  border: 2px solid white;
-  padding: 10px 20px;
-  margin-left: 15px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.3s;
-  font-size: 16px;
-}
-
-.headerButton:hover {
-  background-color: white;
-  color: #003580;
-}
-
-.headerButton.search {
-  background-color: yellow;
-  color: black;
-  border: 1px;
-  font-weight: bold;
-}
-
-.headerButton.search:hover {
-  background-color: #eee;
-  color: #003580;
-}
-
-.headerContent {
+.searchFieldBody {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  min-width: 0;
+  flex: 1;
+  text-align: left;
 }
 
-.headerTitle {
-  font-size: 2.5rem;
-  font-weight: 600;
-  margin-bottom: 15px;
-  text-align: center;
-}
-
-.headerDesc {
-  margin-bottom: 30px;
-  text-align: center;
-  font-size: 18px;
-  line-height: 1.6;
-  max-width: 700px;
-}
-
-.headerSearch {
-  display: flex;
-  background-color: white;
-  color: #333;
-  padding: 15px;
-  border-radius: 8px;
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Softer shadow */
-  border: yellowgreen;
-  border-style: solid;
-  font-family: "Khand";
-}
-
-.headerSearchItem {
-  display: flex;
-  align-items: center;
-  margin-right: 30px;
-  flex-grow: 1;
-  position: relative;
-}
-
-.headerSearchItem:last-child {
-  margin-right: 0;
-}
-
-.headerSearchInput {
+.searchToggle {
+  background: none;
   border: none;
-  padding: 10px;
-  width: 100%;
-  font-size: 18px;
-  margin-left: 10px;
-}
-
-.headerSearchInput::placeholder {
-  color: #aaa; /* More visible placeholder color */
-  font-size: 18px;
-}
-
-.headerSearchText {
+  padding: 0;
   cursor: pointer;
-  white-space: nowrap;
-  padding: 10px;
-  border: 1px solid #ccc; /* More distinct border */
-  border-radius: 8px;
-  font-size: 18px;
-  transition: all 0.3s;
-  margin-left: 10px;
 }
 
-.headerSearchText:hover {
-  border-color: #999;
+.searchLabel {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
 }
 
-.headerButton.search {
-  background-color: #003580; /* Dark blue background */
-  color: white; /* White text color */
+.searchInput {
   border: none;
-  font-weight: bold;
-  padding: 10px 20px; /* Adjust padding */
-  border-radius: 8px;
-  cursor: pointer; /* Ensure cursor is a pointer */
-  transition: all 0.3s;
+  padding: 0;
+  font-size: 15px;
+  font-weight: 500;
+  background: transparent;
+  width: 100%;
 }
 
-.headerButton.search:hover {
-  background-color: #274d81; /* Darker blue on hover */
-  color: white;
+.searchInput:focus {
+  outline: none;
 }
-.date,
-.options {
+
+.searchValue {
+  font-size: 15px;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.searchSubmit {
+  border-radius: 10px;
+  padding-left: 28px;
+  padding-right: 28px;
+}
+
+.popover {
   position: absolute;
-  top: 100%;
+  top: calc(100% + 12px);
   left: 0;
-  z-index: 2;
-  background-color: white;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-  padding: 15px;
-  min-width: 250px;
+  z-index: 15;
+  background: white;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  cursor: default;
+}
+
+.popover.options {
+  width: 300px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
 .optionItem {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 15px;
-}
-
-.optionItem:last-child {
-  margin-bottom: 0;
 }
 
 .optionText {
-  font-weight: bold;
-  font-size: 18px;
+  font-weight: 600;
+}
+
+.optionHint {
+  font-size: 12px;
+  color: var(--muted);
 }
 
 .optionCounter {
   display: flex;
   align-items: center;
+  gap: 12px;
 }
 
 .optionCounterButton {
-  border: none;
-  background-color: #eee;
-  padding: 8px 16px;
-  cursor: pointer;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid var(--brand);
+  background: white;
+  color: var(--brand);
   font-size: 18px;
-  border-radius: 5px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.optionCounterButton:hover:not(:disabled) {
+  background: var(--brand-light);
+}
+
+.optionCounterButton:disabled {
+  border-color: var(--border);
+  color: #b7bfcc;
+  cursor: not-allowed;
 }
 
 .optionCounterNumber {
-  margin: 0 15px;
-  font-size: 18px;
+  min-width: 18px;
+  text-align: center;
+  font-weight: 600;
 }
 
-/* Responsive Adjustments */
-@media (max-width: 768px) {
-  .headerContainer {
-    width: 90%;
+@media (max-width: 860px) {
+  .hero {
+    padding-top: 36px;
+    margin-bottom: 24px;
   }
 
-  .headerNav {
+  .heroInner {
+    padding-bottom: 28px;
+  }
+
+  .searchBar {
     flex-direction: column;
-    align-items: flex-start;
-    margin-bottom: 20px;
+    transform: none;
+    margin-top: 0;
+    margin-bottom: -24px;
+    position: relative;
+    top: 0;
   }
 
-  .headerNavItem {
-    margin: 8px 0;
-    margin-right: 0;
-    font-size: 16px;
+  .hero {
+    padding-bottom: 32px;
   }
 
-  .headerSearch {
-    flex-direction: column;
-    padding: 10px;
-    border: yellow;
-    border-block-style: solid;
+  .searchField + .searchField::before {
+    left: 14px;
+    right: 14px;
+    top: -2px;
+    bottom: auto;
+    width: auto;
+    height: 1px;
   }
 
-  .headerSearchItem {
-    margin: 15px 0;
-    flex-direction: column;
-    align-items: flex-start;
-    border: 1px;
+  .popover {
+    left: 0;
+    right: 0;
+    width: auto;
+    max-width: calc(100vw - 48px);
+    overflow-x: auto;
   }
 
-  .headerSearchInput,
-  .headerSearchText {
+  .popover.options {
+    width: auto;
+  }
+
+  .searchSubmit {
     width: 100%;
-    font-size: 16px;
-    padding: 10px;
-    margin-left: 0;
-  }
-
-  .headerTitle {
-    font-size: 1.8rem;
-    margin-bottom: 10px;
-  }
-
-  .headerDesc {
-    font-size: 14px;
-    margin-bottom: 20px;
-  }
-
-  .headerButton {
-    font-size: 14px;
-    padding: 8px 16px;
-  }
-
-  .headerSearchInput::placeholder {
-    font-size: 16px;
-  }
-}
-
-/* Responsive Adjustments */
-@media (max-width: 768px) {
-  .headerContainer {
-    padding: 0 10px; /* Reduce padding on smaller screens */
-  }
-
-  .headerNav {
-    flex-direction: column; /* Stack navigation items */
-    align-items: flex-start;
-    margin-bottom: 20px;
-  }
-
-  .headerNavItem {
-    margin: 8px 0;
-    margin-right: 0;
-    font-size: 16px;
-    width: 100%; /* Make nav items full width */
-  }
-
-  .headerAuth {
-    flex-direction: column; /* Stack auth buttons */
-    align-items: stretch; /* Stretch buttons to full width */
-  }
-
-  .headerButton {
-    margin: 5px 0; /* Adjust button margins */
-    width: 100%; /* Make buttons full width */
-  }
-
-  .headerSearch {
-    flex-direction: column; /* Stack search items */
-    padding: 10px;
-  }
-
-  .headerSearchItem {
-    margin: 10px 0;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .headerSearchInput,
-  .headerSearchText {
-    width: 100%;
-    font-size: 16px;
-    padding: 10px;
-    margin-left: 0;
-  }
-
-  .headerTitle {
-    font-size: 1.8rem;
-    margin-bottom: 10px;
-  }
-
-  .headerDesc {
-    font-size: 14px;
-    margin-bottom: 20px;
   }
 }

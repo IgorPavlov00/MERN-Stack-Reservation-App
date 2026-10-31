@@ -1,42 +1,44 @@
+import { useNavigate } from "react-router-dom";
+import useFetch from "../../hooks/useFetch";
 import "./featured.css";
 
+const photo = (id) => `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=800&q=70`;
+
+const CITIES = [
+  { name: "Madrid", country: "Spain", img: photo("1539037116277-4db20889f2d4") },
+  { name: "London", country: "United Kingdom", img: photo("1513635269975-59663e0ac1ad") },
+  { name: "Dubai", country: "United Arab Emirates", img: photo("1512453979798-5ea266f8880c") },
+  { name: "Berlin", country: "Germany", img: photo("1560969184-10fe8719e047") },
+  { name: "Budapest", country: "Hungary", img: photo("1565426873118-a17ed65d74b9") },
+  { name: "Austin", country: "United States", img: photo("1588993608283-7f0eda4438be") },
+];
+
+const plural = (n) => `${n} ${n === 1 ? "property" : "properties"}`;
+
 const Featured = () => {
+  const navigate = useNavigate();
+  const { data, loading } = useFetch(
+    `/hotels/countByCity?cities=${CITIES.map((c) => c.name).join(",")}`
+  );
+
   return (
     <div className="featured">
-      <div className="featuredItem">
-        <img
-          src="https://cf.bstatic.com/xdata/images/city/max500/957801.webp?k=a969e39bcd40cdcc21786ba92826063e3cb09bf307bcfeac2aa392b838e9b7a5&o="
-          alt=""
-          className="featuredImg"
-        />
-        <div className="featuredTitles">
-          <h1>Dublin</h1>
-          <h2>123 properties</h2>
-        </div>
-      </div>
-
-      <div className="featuredItem">
-        <img
-          src="https://cf.bstatic.com/xdata/images/city/max500/690334.webp?k=b99df435f06a15a1568ddd5f55d239507c0156985577681ab91274f917af6dbb&o="
-          alt=""
-          className="featuredImg"
-        />
-        <div className="featuredTitles">
-          <h1>Reno</h1>
-          <h2>533 properties</h2>
-        </div>
-      </div>
-      <div className="featuredItem">
-        <img
-          src="https://cf.bstatic.com/xdata/images/city/max500/689422.webp?k=2595c93e7e067b9ba95f90713f80ba6e5fa88a66e6e55600bd27a5128808fdf2&o="
-          alt=""
-          className="featuredImg"
-        />
-        <div className="featuredTitles">
-          <h1>Austin</h1>
-          <h2>532 properties</h2>
-        </div>
-      </div>
+      {CITIES.map((city, i) => (
+        <button
+          type="button"
+          className={`featuredItem ${i < 2 ? "large" : ""}`}
+          key={city.name}
+          onClick={() => navigate(`/hotels?city=${encodeURIComponent(city.name)}`)}
+        >
+          <img src={city.img} alt="" className="featuredImg" loading="lazy" />
+          <div className="featuredTitles">
+            <h3>{city.name}</h3>
+            <span>
+              {city.country} · {loading ? "…" : plural(data?.[i] ?? 0)}
+            </span>
+          </div>
+        </button>
+      ))}
     </div>
   );
 };

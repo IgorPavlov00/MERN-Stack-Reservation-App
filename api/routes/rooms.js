@@ -7,14 +7,14 @@ import {
   updateRoom,
   updateRoomAvailability,
 } from "../controllers/room.js";
-import { verifyAdmin } from "../utils/verifyToken.js";
+import { verifyAdmin, verifyToken } from "../utils/verifyToken.js";
 
 const router = express.Router();
 //CREATE
 router.post("/:hotelid", verifyAdmin, createRoom);
 
 //UPDATE
-router.put("/availability/:id", updateRoomAvailability);
+router.put("/availability/:id", verifyToken, updateRoomAvailability);
 router.put("/:id", verifyAdmin, updateRoom);
 //DELETE
 router.delete("/:id/:hotelid", verifyAdmin, deleteRoom);

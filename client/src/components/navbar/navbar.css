@@ -1,101 +1,94 @@
 .navbar {
-  height: 50px;
-  background-color: #003580;
-  display: flex;
-  justify-content: center;
-  font-family: "Khand";
+  background: var(--brand);
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
 .navContainer {
-  width: 100%;
-  max-width: 1024px;
-  color: white;
+  height: 64px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 16px;
 }
 
 .logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: white;
+  font-weight: 800;
+  font-size: 20px;
+  letter-spacing: -0.02em;
+}
+
+.logo:hover {
+  text-decoration: none;
+}
+
+.logo svg {
+  color: var(--accent);
+}
+
+.navItems {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.navLink {
+  color: rgba(255, 255, 255, 0.9);
   font-weight: 500;
-  font-size: 1.2rem; /* Slightly larger logo */
+  font-size: 15px;
+  padding: 8px 10px;
+  border-radius: var(--radius-sm);
 }
 
-.navButton {
-  margin-left: 20px;
-  border: none;
-  padding: 8px 16px; /* Increased padding */
-  cursor: pointer;
-  color: white; /* Buttons are now white */
-  background-color: transparent; /* Transparent background */
-  border: 1px solid white; /* White border */
-  border-radius: 5px; /* Rounded corners */
-  font-weight: 500; /* Slightly bolder text */
-  transition: all 0.3s ease; /* Smooth transitions for hover effects */
-  margin-top: 10px;
+.navLink:hover {
+  background: rgba(255, 255, 255, 0.1);
+  text-decoration: none;
 }
 
-.navButton:hover {
-  background-color: white; /* White background on hover */
-  color: #003580; /* Blue text on hover */
-  border-color: #003580; /* Blue border on hover */
+.navBtn {
+  padding: 8px 14px;
+  font-size: 14px;
 }
 
-.navButton.signup {
-  /* Style for the "Sign Up" button (if you have one) */
-  background-color: #f0c808; /* Example yellow color */
-  color: #003580;
-  border: none; /* Remove border */
-}
-.navButton.signup:hover {
-  background-color: #e6b400; /* Darker yellow on hover */
-  color: #003580;
+.navBtn:hover {
+  text-decoration: none;
 }
 
-/* Optional: Add some spacing between nav items */
-.navContainer > * {
-  /* Targets direct children of navContainer */
-  margin: 0 5px; /* Adds small margin to the left and right */
+.navUser {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+  font-size: 15px;
 }
-.navContainer > *:first-child {
-  margin-left: 0; /* Remove margin from the first element */
+
+.navAvatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #1a1a1a;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  font-size: 14px;
 }
-.navContainer > *:last-child {
-  margin-right: 0; /* Remove margin from the last element */
-}
-@media (max-width: 768px) {
-  /* Adjust breakpoint as needed */
-  .navContainer {
-    flex-direction: column; /* Stack navbar items vertically */
-    align-items: center; /* Center items horizontally */
-    padding: 10px; /* Reduce padding */
+
+@media (max-width: 640px) {
+  .navLink,
+  .navUserName,
+  .navBtnText {
+    display: none;
   }
 
   .logo {
-    margin-bottom: 10px; /* Add space below logo */
-  }
-
-  .navButton {
-    margin: 5px 0; /* Adjust button margins */
-    width: 100%; /* Make buttons full width */
-  }
-
-  .homeContainer {
-    flex-direction: column; /* Stack content vertically */
-    align-items: center; /* Center content horizontally */
-    padding: 10px; /* Reduce padding */
-  }
-
-  .homeContainer > * {
-    /* Style the children of homeContainer */
-    width: 100%; /* Make children full width */
-    margin-bottom: 10px; /* Add space between children */
-  }
-}
-
-/* Optional: Adjustments for even smaller screens */
-@media (max-width: 400px) {
-  /* Adjust breakpoint as needed */
-  .logo {
-    font-size: 1rem; /* Slightly smaller logo on very small screens */
+    font-size: 18px;
   }
 }
